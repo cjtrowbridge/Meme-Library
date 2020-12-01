@@ -22,6 +22,7 @@ if(!(isset($_GET['p']))){
   $_GET['p'] = 1;
 }
 $Index = $_GET['p'];
+$_GET['p']--;
 if(
   (intval($Index) == 0) ||
   ($Index > count($Chunks))
@@ -29,7 +30,7 @@ if(
   
   die('Invalid page number: '.$Filter.': '.$Index.', Only found '.count($Chunks).' pages.');
 }
-$Index--;
+$Index = $_GET['p'];
 $Pics = $Chunks[$Index];
 
 function GetFiles($Path, $URL, $Filter = false){
@@ -178,7 +179,12 @@ function ago($time){
       Pages: <?php
         $Pages = count($Chunks);
         for ($i = 1; $i <= $Pages; $i++) {
-          echo '<a btn-small m-1 btn-outline-success" href="?p='.$i.'">'.$i.'</a> ';
+          
+          if($i == $_GET['p']){
+            echo '<a class="btn-small m-1 btn-outline-success" href="?p='.$i.'">'.$i.'</a> ';
+          }else{
+            echo '<a class="btn-small m-1 btn-outline-info" href="?p='.$i.'">'.$i.'</a> ';
+          }
         }
       ?>
       <h2>Categories</h2> 
