@@ -91,7 +91,7 @@ function GetFiles($Path, $URL, $Filter = false, $MatchHash = false){
                 ($Filter == false) ||
                 ($Filter == $In)
               ){
-                $New = = array(
+                $New = array(
                   'Time' => $Time,
                   'URL' => $FQPath,
                   'In' => $In,
@@ -102,7 +102,7 @@ function GetFiles($Path, $URL, $Filter = false, $MatchHash = false){
                   ($MatchHash == false) ||
                   ($Hash == $MatchHash)
                 ){
-                  $Ret[] =$New;
+                  $Ret[] = $New;
                 }
               }
             }else{
