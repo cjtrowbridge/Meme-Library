@@ -4,7 +4,7 @@ $Path = '../memes';
 $URL = 'https://cjtrowbridge.com/memes';
 $Pics = GetFiles($Path, $URL);
 $Times = array_column($Pics, 'MTime');
-array_multisort($Pics, SORT_DESC, $Times);
+array_multisort($Times, SORT_DESC, $Pics);
 
 function GetFiles($Path, $URL){
   
