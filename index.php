@@ -2,11 +2,13 @@
 
 $Path = '../memes';
 $URL = 'https://cjtrowbridge.com/memes';
+$IgnoredExtensions = array();
 $Pics = GetFiles($Path, $URL);
 usort($Pics, function ($item1, $item2) {
     return $item2['Time'] <=> $item1['Time'];
 });
-$IgnoredExtensions = array();
+$Pics = array_slice($Pics, 0, 100);
+
 
 function GetFiles($Path, $URL){
   $Ret = array();
@@ -14,7 +16,7 @@ function GetFiles($Path, $URL){
     while (false !== ($File = readdir($Handle))) {
       if ($File != "." && $File != "..") {
         if(is_dir($Path.'/'.$File)){
-          $New = GetFiles($Path.'/'.$File, $URL);
+          $New = GetFiles($Path.'/'.$File, $URL.'/'.$File);
           foreach($New as $NewFile){
             $Ret[]=$NewFile;
           }
