@@ -7,7 +7,7 @@ $IgnoredExtensions = array();
 if(isset($_GET['f']){
   $Filter = $_GET['f'];
 }else{
-  $_GET['f']=false;
+  $Filter = false;
 }
 $Pics = GetFiles($Path, $FQDNURL, $Filter);
 usort($Pics, function ($item1, $item2) {
@@ -36,7 +36,7 @@ function GetFiles($Path, $URL, $Filter = false){
     while (false !== ($File = readdir($Handle))) {
       if ($File != "." && $File != "..") {
         if(is_dir($Path.'/'.$File)){
-          $New = GetFiles($Path.'/'.$File, $URL.'/'.$File);
+          $New = GetFiles($Path.'/'.$File, $URL.'/'.$File, $Filter);
           foreach($New as $NewFile){
             $Ret[]=$NewFile;
           }
