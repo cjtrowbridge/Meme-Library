@@ -2,7 +2,7 @@
 
 $Path = '../memes';
 $URL = 'https://cjtrowbridge.com/memes';
-$Pics = GetFiles($Path);
+$Pics = GetFiles($Path, $URL);
 
 function GetFiles($Path, $URL){
   $Ret = array();
