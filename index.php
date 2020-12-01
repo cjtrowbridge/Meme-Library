@@ -18,7 +18,7 @@ function GetFiles($Path, $URL){
           GetFiles($Path.'/'.$URL, $URL, $Limit, $Count);
         }else{
           $File = $URL.'/'.$File;
-          $Time = filemtime($Path.'/'.$URL);
+          $Time = filemtime($Path.'/'.$File);
           $Ret[] = array(
             'Time' => $Time,
             'URL' => $File
