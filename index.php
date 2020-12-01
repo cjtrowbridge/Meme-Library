@@ -24,6 +24,7 @@ function GetFiles($Path, $URL){
             'Time' => $Time,
             'URL' => $FQPath
           );
+          echo "<!-- $Time: $URL -->/n";
         }
       }
     }
