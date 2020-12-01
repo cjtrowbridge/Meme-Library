@@ -11,7 +11,7 @@ if(isset($_GET['f'])){
   $Filter = false;
   $_GET['f'] = 'All';
 }
-$Tags = array();
+$Tags = array('All');
 $Pics = GetFiles($Path, $FQDNURL, $Filter);
 usort($Pics, function ($item1, $item2) {
   return $item2['Time'] <=> $item1['Time'];
@@ -193,7 +193,7 @@ function ago($time){
       ?>
       
       <h2>Categories</h2> 
-      <p><a class="m-1 btn btn-small btn-outline-info" href="?">All</a> <?php
+      <p><?php
         global $Filter;
         sort($Tags);
         foreach($Tags as $Tag){
@@ -232,7 +232,7 @@ function ago($time){
 
 <!-- 
 Page--: <?php echo $_GET['p']."\n"; ?>
-Filter:  <?php echo $_GET['f']."\n"; ?>
+Filter: <?php echo $_GET['f']."\n"; ?>
 Runtime: <?php echo round((microtime(true)-$Start),4)." seconds\n"; ?>
 Ignored Extensions:
 <?php
