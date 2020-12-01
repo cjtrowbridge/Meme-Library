@@ -23,15 +23,11 @@ if(isset($_GET['h'])){
 }
 
 $Pics = GetFiles($Path, $FQDNURL, $Filter, $Hash);
-
-
-  
 usort($Pics, function ($item1, $item2) {
   return $item2['Time'] <=> $item1['Time'];
 });
-
-//$Pics = array_slice($Pics, 0, 100);
 $Chunks = array_chunk($Pics,100);
+
 if(!(isset($_GET['p']))){
   $_GET['p'] = 1;
 }
@@ -41,10 +37,10 @@ if(
   (intval($Index) == 0) ||
   ($Index > count($Chunks))
 ){
-  
   die('Invalid page number: '.$Filter.': '.$Index.', Only found '.count($Chunks).' pages.');
 }
 $Index = $_GET['p'];
+
 $Pics = $Chunks[$Index];
 
 function GetFiles($Path, $URL, $Filter = false, $MatchHash = false){
