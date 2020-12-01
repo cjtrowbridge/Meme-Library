@@ -46,11 +46,11 @@ function GetFiles($Path, $URL){
             ){
               $FQPath = $URL.'/'.$File;
               $Time = filemtime($Path.'/'.$File);
-              $In = str_replace($FQDNURL,'',$FQPath);
+              $In = str_replace($FQDNURL, '', $FQPath);
               $Ret[] = array(
                 'Time' => $Time,
                 'URL' => $FQPath,
-                'In' => $in
+                'In' => $In
               );
             }else{
               $IgnoredExtensions[$FileExtension] = $FileExtension;
