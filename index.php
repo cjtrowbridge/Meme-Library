@@ -47,6 +47,7 @@ function GetFiles($Path, $URL){
               $FQPath = $URL.'/'.$File;
               $Time = filemtime($Path.'/'.$File);
               $In = str_replace($FQDNURL, '', $FQPath);
+              $In = str_replace($File, '', $In);
               $Ret[] = array(
                 'Time' => $Time,
                 'URL' => $FQPath,
