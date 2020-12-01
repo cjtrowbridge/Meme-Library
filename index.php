@@ -200,7 +200,7 @@ function ago($time){
             ($Filter == $Tag)||
             (
               ($Tag == 'All') &&
-              ($Filter == false)
+              ($Filter == '')
             )
           ){
             echo '<a class="m-1 btn btn-small btn-info" href="?f='.$Tag.'">'.$Tag.'</a>'."\n";
