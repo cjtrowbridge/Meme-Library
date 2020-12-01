@@ -14,14 +14,13 @@ $Chunks = array_chunk($Pics,100);
 if(!(isset($_GET['p']))){
   $_GET['p'] = 1;
 }
-$Index = $_GET['p'] - 1;
 if(
     (intval($Index) == 0) ||
     (!(isset($Chunks[ $Index ])))
 ){
     die('Invalid page number.');
 }
-    
+$Index = $_GET['p'] - 1;    
 
 
 function GetFiles($Path, $URL){
