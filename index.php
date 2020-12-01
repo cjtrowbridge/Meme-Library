@@ -4,9 +4,14 @@ $Path = '../memes';
 global $FQDNURL;
 $FQDNURL = 'https://cjtrowbridge.com/memes';
 $IgnoredExtensions = array();
+if(isset($_GET['f']){
+  $Filter = $_GET['f'];
+}else{
+  $_GET['f']=false;
+}
 $Pics = GetFiles($Path, $FQDNURL, $Filter);
 usort($Pics, function ($item1, $item2) {
-    return $item2['Time'] <=> $item1['Time'];
+  return $item2['Time'] <=> $item1['Time'];
 });
 
 //$Pics = array_slice($Pics, 0, 100);
@@ -16,10 +21,10 @@ if(!(isset($_GET['p']))){
 }
 $Index = $_GET['p'];
 if(
-    (intval($Index) == 0) ||
-    (!(isset($Chunks[ $Index ])))
+  (intval($Index) == 0) ||
+  (!(isset($Chunks[ $Index ])))
 ){
-    die('Invalid page number.');
+  die('Invalid page number.');
 }
 $Index--;
 $Pics = $Chunks[$Index];
