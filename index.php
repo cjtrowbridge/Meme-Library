@@ -5,7 +5,10 @@ $Path = '../memes';
 global $FQDNURL, $Tags, $Filter;
 $FQDNURL = 'https://cjtrowbridge.com/memes';
 $IgnoredExtensions = array();
-if(isset($_GET['f'])){
+if(
+  isset($_GET['f'])&&
+  ($_GET['f'] != 'All')
+){
   $Filter = $_GET['f'];
 }else{
   $Filter = false;
