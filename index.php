@@ -2,26 +2,25 @@
 
 $Path = '../memes';
 $URL = 'https://cjtrowbridge.com/memes';
-$Limit = 100;
-$Pics = GetFiles($Path, $URL, $Limit);
+$Pics = GetFiles($Path, $URL);
+$Files = array_column($Files, 'MTime');
+array_multisort($Pics, SORT_DESC, $Files);
 
-function GetFiles($Path, $URL, $Limit, $Count = 0){
+function GetFiles($Path, $URL){
   
   $Ret = array();
   if ($Handle = opendir($Path)) {
     while (false !== ($File = readdir($Handle))) {
-      if($Count < $Limit){
-        if ($File != "." && $File != "..") {
-          if(is_dir($Path.'/'.$File)){
-            GetFiles($Path.'/'.$URL, $URL, $Limit, $Count);
-          }else{
-            $Count++;
-            $File = $URL.'/'.$File;
-            echo "<!--$File-->\n";
-            $Ret[] = array(
-              'URL' => $File
-            );
-          }
+      if ($File != "." && $File != "..") {
+        if(is_dir($Path.'/'.$File)){
+          GetFiles($Path.'/'.$URL, $URL, $Limit, $Count);
+        }else{
+          $File = $URL.'/'.$File;
+          $MTime = filemtime($Path.'/'.$URL);
+          $Ret[] = array(
+            'MTime' => $MTime,
+            'URL' => $File
+          );
         }
       }
     }
