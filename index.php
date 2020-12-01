@@ -195,7 +195,13 @@ function ago($time){
       <p><a class="m-1 btn btn-small btn-outline-info" href="?">All</a> <?php
         sort($Tags);
         foreach($Tags as $Tag){
-          if($i == _GET['f']){
+          if(
+            ($i == $_GET['f'])||
+            (
+              ($Tag == 'All') &&
+               (!(isset($_GET['f'])))
+            )
+          ){
             echo '<a class="m-1 btn btn-small btn-info" href="?f='.$Tag.'">'.$Tag.'</a>'."\n";
           }else{
             echo '<a class="m-1 btn btn-small btn-outline-info" href="?f='.$Tag.'">'.$Tag.'</a>'."\n";
