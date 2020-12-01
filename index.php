@@ -6,6 +6,7 @@ $Pics = GetFiles($Path, $URL);
 usort($Pics, function ($item1, $item2) {
     return $item2['Time'] <=> $item1['Time'];
 });
+$IgnoredExtensions = array();
 
 function GetFiles($Path, $URL){
   $Ret = array();
@@ -18,12 +19,23 @@ function GetFiles($Path, $URL){
             $Ret[]=$NewFile;
           }
         }else{
-          $FQPath = $URL.'/'.$File;
-          $Time = filemtime($Path.'/'.$File);
-          $Ret[] = array(
-            'Time' => $Time,
-            'URL' => $FQPath
-          );
+            $FileExtension = strtolower(pathinfo($File, PATHINFO_EXTENSION));
+            if(
+              $FileExtension == 'jpg' ||
+              $FileExtension == 'jpeg' ||
+              $FileExtension == 'gif' ||
+              $FileExtension == 'png' ||
+              $FileExtension == 'bmp'
+            ){
+              $FQPath = $URL.'/'.$File;
+              $Time = filemtime($Path.'/'.$File);
+              $Ret[] = array(
+                'Time' => $Time,
+                'URL' => $FQPath
+              );
+            }else{
+              $IgnoredExtensions[$FileExtension] = $FileExtension;
+            }
         }
       }
     }
@@ -113,5 +125,20 @@ function GetFiles($Path, $URL){
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
+<!-- Ignored Extensions:
+<?php
+  foreach($IgnoredExtensions as $IgnoredExtension){
+    if(!(
+      $IgnoredExtension == 'md'||
+      $IgnoredExtension == 'txt'||
+      $IgnoredExtension == 'zip'||
+      $IgnoredExtension == 'rar'
+    )){
+      echo $IgnoredExtension."\n";
+    }
+  }
+?>
+-->
+    
 </body>
 </html>
