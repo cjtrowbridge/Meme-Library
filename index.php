@@ -22,7 +22,7 @@ if(!(isset($_GET['p']))){
 $Index = $_GET['p'];
 if(
   (intval($Index) == 0) ||
-  (!(isset($Chunks[ $Index ])))
+  ($Index > count($Chunks))
 ){
   
   die('Invalid page number: '.$Filter.': '.$Index.', Only found '.count($Chunks).' pages.');
