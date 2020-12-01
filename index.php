@@ -182,7 +182,8 @@ function ago($time){
         $Pages = count($Chunks);
         for ($i = 1; $i <= $Pages; $i++) {
           
-          if($i == $_GET['p']){
+          $Page = $_GET['p']+1;
+          if($i == $Page){
             echo '<a class="btn btn-small m-1 btn-info" href="?p='.$i.'">'.$i.'</a> ';
           }else{
             echo '<a class="btn btn-small m-1 btn-outline-info" href="?p='.$i.'">'.$i.'</a> ';
@@ -221,7 +222,6 @@ function ago($time){
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
 <!-- 
-Page: <?php echo $_GET['p']; ?>
 Runtime: <?php echo round((microtime(true)-$Start),4)." seconds\n"; ?>
 Ignored Extensions:
 <?php
