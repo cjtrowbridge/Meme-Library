@@ -12,11 +12,11 @@ function GetFiles($Path, $URL, $Limit, $Count = 0){
     while (false !== ($File = readdir($Handle))) {
       if($Count < $Limit){
         if ($File != "." && $File != "..") {
-          if(is_dir($File)){
+          if(is_dir($Path.'/'.$File)){
             GetFiles($Path.'/'.$URL, $URL, $Limit, $Count);
           }else{
             $Count++;
-            $File = $URL.$File;
+            $File = $URL.'/'.$File;
             echo "<!--$File-->\n";
             $Ret[] = array(
               'URL' => $File
