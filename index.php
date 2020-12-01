@@ -24,7 +24,7 @@ if(
   (intval($Index) == 0) ||
   (!(isset($Chunks[ $Index ])))
 ){
-  die('Invalid page number.');
+  die('Invalid page number: '.$Filter.': '.$Index);
 }
 $Index--;
 $Pics = $Chunks[$Index];
