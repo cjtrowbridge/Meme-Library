@@ -22,7 +22,7 @@ if(
     die('Invalid page number.');
 }
 $Index--;
-
+$Pics = $Chunks[$Index];
 
 function GetFiles($Path, $URL){
   global $FQDNURL;
