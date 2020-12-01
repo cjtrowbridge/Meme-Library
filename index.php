@@ -175,8 +175,11 @@ function ago($time){
     </div><!--/col-12-->
 
     <div class="col-12"><!--Begin Footer-->
-      <?php
-        
+      Pages: <?php
+        $Pages = count($Chunks);
+        for ($i = 1; $i <= $Pages; $i++) {
+          echo "<a btn-small m-1 btn-outline-success" href="?p=$i">$i</a> ";
+        }
       ?>
       <h2>Categories</h2> 
       <p><a class="m-1 btn btn-small btn-outline-info" href="?">All</a> <?php
