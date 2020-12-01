@@ -8,7 +8,7 @@ $Pics = GetFiles($Path, $URL, $Limit);
 function GetFiles($Path, $URL, $Limit, $Count = 0){
   
   $Ret = array();
-  if ($Handle = opendir($Path, $URL)) {
+  if ($Handle = opendir($Path)) {
     while (false !== ($File = readdir($Handle))) {
       if($Count < $Limit){
         if ($File != "." && $File != "..") {
