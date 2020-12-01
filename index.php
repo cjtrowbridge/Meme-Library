@@ -1,16 +1,31 @@
 <?php
 
 $Path = '../memes';
-$URL = 'https://cjtrowbridge.com/memes';
+global $FQDNURL;
+$FQDNURL = 'https://cjtrowbridge.com/memes';
 $IgnoredExtensions = array();
-$Pics = GetFiles($Path, $URL);
+$Pics = GetFiles($Path, $FQDNURL);
 usort($Pics, function ($item1, $item2) {
     return $item2['Time'] <=> $item1['Time'];
 });
-$Pics = array_slice($Pics, 0, 100);
+
+//$Pics = array_slice($Pics, 0, 100);
+$Chunks = array_chunk($Pics,100);
+if(!(isset($_GET['p']))){
+  $_GET['p'] = 1;
+}
+$Index = $_GET['p'] - 1;
+if(
+    (intval($Index) == 0) ||
+    (!(isset($Chunks[ $Index ]))
+){
+    die('Invalid page number.');
+}
+    
 
 
 function GetFiles($Path, $URL){
+  global $FQDNURL;
   $Ret = array();
   if ($Handle = opendir($Path)) {
     while (false !== ($File = readdir($Handle))) {
@@ -31,9 +46,11 @@ function GetFiles($Path, $URL){
             ){
               $FQPath = $URL.'/'.$File;
               $Time = filemtime($Path.'/'.$File);
+              $In = str_replace($FQDNURL,'',$FQPath);
               $Ret[] = array(
                 'Time' => $Time,
-                'URL' => $FQPath
+                'URL' => $FQPath,
+                'In' => $in
               );
             }else{
               $IgnoredExtensions[$FileExtension] = $FileExtension;
@@ -122,7 +139,7 @@ function ago($time){
               <a href="<?php echo $Pic['URL']; ?>">
                 <img src="<?php echo $Pic['URL']; ?>" title="Saved <?php echo date('r',$Pic['Time']); ?>" width="300">
               </a>
-              <small>Saved <?php echo ago($Pic['Time']); ?> ago.</small>
+              <small>Saved in <?php echo $Pic['In'].'<br>'.ago($Pic['Time']); ?> ago.</small>
             </div><!--End Card-text-->
           </div><!--End Card-body-->
         </div><!--End Card-->
@@ -131,6 +148,9 @@ function ago($time){
     </div><!--/col-12-->
 
     <div class="col-12"><!--Begin Footer-->
+      <?php
+        
+      ?>
       <div class="text-muted text-center mt-1">
         
         <p>
