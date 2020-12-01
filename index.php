@@ -196,10 +196,10 @@ function ago($time){
         sort($Tags);
         foreach($Tags as $Tag){
           if(
-            ($i == $_GET['f'])||
+            ($Filter == $Tag)||
             (
               ($Tag == 'All') &&
-               (!(isset($_GET['f'])))
+              ($Filter == false)
             )
           ){
             echo '<a class="m-1 btn btn-small btn-info" href="?f='.$Tag.'">'.$Tag.'</a>'."\n";
