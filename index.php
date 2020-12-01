@@ -14,7 +14,7 @@ function GetFiles($Path, $URL){
     while (false !== ($File = readdir($Handle))) {
       if ($File != "." && $File != "..") {
         if(is_dir($Path.'/'.$File)){
-          $New = GetFiles($Path.'/'.$URL, $URL);
+          $New = GetFiles($Path.'/'.$File, $URL);
           foreach($New as $NewFile){
             $Ret[]=$NewFile;
           }
