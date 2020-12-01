@@ -179,10 +179,10 @@ function ago($time){
         
       ?>
       <h2>Categories</h2> 
-      <p><a class="m-2 btn btn-small btn-outline-info" href="?">All</a> <?php
+      <p><a class="m-1 btn btn-small btn-outline-info" href="?">All</a> <?php
         sort($Tags);
         foreach($Tags as $Tag){
-          echo '<a class="m-2 btn btn-small btn-outline-info" href="?f='.$Tag.'">'.$Tag.'</a>'."\n";
+          echo '<a class="m-1 btn btn-small btn-outline-info" href="?f='.$Tag.'">'.$Tag.'</a>'."\n";
         }
       ?></p>
       
