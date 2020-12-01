@@ -43,6 +43,7 @@ $Index = $_GET['p'];
 
 $Pics = $Chunks[$Index];
 
+
 function GetFiles($Path, $URL, $Filter = false, $MatchHash = false){
   global $FQDNURL, $Tags;
   $Ret = array();
@@ -195,7 +196,7 @@ function ago($time){
       </div>
     <?php } ?>
         <?php foreach($Pics as $Pic){ ?>
-        <div class="card mb-4">
+        <div class="card mb-4 col">
           <div class="card-body">
             <div class="card-text">
               <?php if(count($Pics)>1){ ?>
