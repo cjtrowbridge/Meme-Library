@@ -1,7 +1,7 @@
 <?php
 
 $Start = microtime(true);
-$Path = '../memes';
+$Path = './';
 global $FQDNURL, $Tags, $Filter;
 $FQDNURL = 'https://cjtrowbridge.com/memes';
 $IgnoredExtensions = array();
