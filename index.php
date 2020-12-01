@@ -82,7 +82,7 @@ function GetFiles($Path, $URL){
           <div class="card-body">
             <div class="card-text">
               <a href="<?php echo $Pic['URL']; ?>">
-                <img src="<?php echo $Pic['URL']; ?>" title="Saved <?php echo date('r',$Pic['mTime']); ?>" width="300">
+                <img src="<?php echo $Pic['URL']; ?>" title="Saved <?php echo date('r',$Pic['Time']); ?>" width="300">
               </a>
             </div><!--End Card-text-->
           </div><!--End Card-body-->
