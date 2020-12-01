@@ -17,11 +17,11 @@ function GetFiles($Path, $URL){
         if(is_dir($Path.'/'.$File)){
           GetFiles($Path.'/'.$URL, $URL, $Limit, $Count);
         }else{
-          $File = $URL.'/'.$File;
+          $FQPath = $URL.'/'.$File;
           $Time = filemtime($Path.'/'.$File);
           $Ret[] = array(
             'Time' => $Time,
-            'URL' => $File
+            'URL' => $FQPath
           );
         }
       }
