@@ -16,8 +16,10 @@ function GetFiles($Path, $URL, $Limit, $Count = 0){
             GetFiles($Path.'/'.$URL, $URL, $Limit, $Count);
           }else{
             $Count++;
+            $File = $URL.$File;
+            echo "<!--$File-->\n";
             $Ret[] = array(
-              'URL' => $URL.$File
+              'URL' => $File
             );
           }
         }
