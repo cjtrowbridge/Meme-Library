@@ -176,17 +176,20 @@ function ago($time){
     </div><!--/col-12-->
 
     <div class="col-12"><!--Begin Footer-->
-      Pages: <?php
+      
+      <h2>Pages</h2> 
+      <?php
         $Pages = count($Chunks);
         for ($i = 1; $i <= $Pages; $i++) {
           
           if($i == $_GET['p']){
-            echo '<a class="btn-small m-1 btn-outline-success" href="?p='.$i.'">'.$i.'</a> ';
+            echo '<a class="btn btn-small m-1 btn-outline-success" href="?p='.$i.'">'.$i.'</a> ';
           }else{
-            echo '<a class="btn-small m-1 btn-outline-info" href="?p='.$i.'">'.$i.'</a> ';
+            echo '<a class="btn btn-small m-1 btn-outline-info" href="?p='.$i.'">'.$i.'</a> ';
           }
         }
       ?>
+      
       <h2>Categories</h2> 
       <p><a class="m-1 btn btn-small btn-outline-info" href="?">All</a> <?php
         sort($Tags);
