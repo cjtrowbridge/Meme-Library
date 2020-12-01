@@ -2,7 +2,7 @@
 
 $Start = microtime(true);
 $Path = '../memes';
-global $FQDNURL, $Tags;
+global $FQDNURL, $Tags, $Filter;
 $FQDNURL = 'https://cjtrowbridge.com/memes';
 $IgnoredExtensions = array();
 if(isset($_GET['f'])){
@@ -193,6 +193,7 @@ function ago($time){
       
       <h2>Categories</h2> 
       <p><a class="m-1 btn btn-small btn-outline-info" href="?">All</a> <?php
+        global $Filter;
         sort($Tags);
         foreach($Tags as $Tag){
           if(
@@ -234,7 +235,7 @@ function ago($time){
 
 <!-- 
 Page--: <?php echo $_GET['p']."\n"; ?>
-Filter:  <?php echo $Filter."\n"; ?>
+Filter:  <?php global $Filter; echo $Filter."\n"; ?>
 Runtime: <?php echo round((microtime(true)-$Start),4)." seconds\n"; ?>
 Ignored Extensions:
 <?php
