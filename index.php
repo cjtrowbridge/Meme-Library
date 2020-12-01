@@ -196,7 +196,7 @@ function ago($time){
       </div>
     <?php } ?>
         <?php foreach($Pics as $Pic){ ?>
-        <div class="card mb-4 col">
+        <div class="card mb-4">
           <div class="card-body">
             <div class="card-text">
               <?php if(count($Pics)>1){ ?>
