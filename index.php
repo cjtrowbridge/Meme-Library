@@ -8,7 +8,8 @@ $IgnoredExtensions = array();
 if(isset($_GET['f'])){
   $Filter = $_GET['f'];
 }else{
-  $Filter = false;
+  $Filter = 'All';
+  $_GET['f'] = 'All';
 }
 $Tags = array();
 $Pics = GetFiles($Path, $FQDNURL, $Filter);
@@ -197,11 +198,7 @@ function ago($time){
         sort($Tags);
         foreach($Tags as $Tag){
           if(
-            ($Filter == $Tag)||
-            (
-              ($Tag == 'All') &&
-              ($Filter == '')
-            )
+            ($_GET['f'] == $Tag)
           ){
             echo '<a class="m-1 btn btn-small btn-info" href="?f='.$Tag.'">'.$Tag.'</a>'."\n";
           }else{
@@ -235,7 +232,7 @@ function ago($time){
 
 <!-- 
 Page--: <?php echo $_GET['p']."\n"; ?>
-Filter:  <?php global $Filter; echo $Filter."\n"; ?>
+Filter:  <?php echo $_GET['f']."\n"; ?>
 Runtime: <?php echo round((microtime(true)-$Start),4)." seconds\n"; ?>
 Ignored Extensions:
 <?php
