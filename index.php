@@ -8,7 +8,7 @@ $IgnoredExtensions = array();
 if(isset($_GET['f'])){
   $Filter = $_GET['f'];
 }else{
-  $Filter = 'All';
+  $Filter = false;
   $_GET['f'] = 'All';
 }
 $Tags = array();
