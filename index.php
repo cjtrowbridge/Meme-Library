@@ -153,7 +153,7 @@ function ago($time){
       <p>Tags: <?php
         sort($Tags);
         foreach($Tags as $Tag){
-          <a class="btn btn-small btn-outline-info" href="?f=<?php echo $Tag; ?>">$Tag</a>
+          echo '<a class="btn btn-small btn-outline-info" href="?f='$Tag.'">'.$Tag.'</a>';
         }
       ?></p>
       <div class="card-columns">
