@@ -17,7 +17,7 @@ if(!(isset($_GET['p']))){
 $Index = $_GET['p'] - 1;
 if(
     (intval($Index) == 0) ||
-    (!(isset($Chunks[ $Index ]))
+    (!(isset($Chunks[ $Index ])))
 ){
     die('Invalid page number.');
 }
