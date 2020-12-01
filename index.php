@@ -148,6 +148,9 @@ function ago($time){
       background-color: #F8F8F8;
       padding-top: 2rem;
     }
+    card{
+      minimum-height: 200px;
+    }
   </style>
 </head>
 <body>
