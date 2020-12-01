@@ -178,7 +178,7 @@ function ago($time){
       Pages: <?php
         $Pages = count($Chunks);
         for ($i = 1; $i <= $Pages; $i++) {
-          echo "<a btn-small m-1 btn-outline-success" href="?p=$i">$i</a> ";
+          echo '<a btn-small m-1 btn-outline-success" href="?p='.$i.'">'.$i.'</a> ';
         }
       ?>
       <h2>Categories</h2> 
