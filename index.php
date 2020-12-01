@@ -4,7 +4,7 @@ $Path = '../memes';
 $URL = 'https://cjtrowbridge.com/memes';
 $Pics = GetFiles($Path, $URL);
 usort($Pics, function ($item1, $item2) {
-    return $item2['CTime'] <=> $item1['CTime'];
+    return $item2['Time'] <=> $item1['Time'];
 });
 
 
@@ -18,9 +18,9 @@ function GetFiles($Path, $URL){
           GetFiles($Path.'/'.$URL, $URL, $Limit, $Count);
         }else{
           $File = $URL.'/'.$File;
-          $CTime = filectime($Path.'/'.$URL);
+          $CTime = filetime($Path.'/'.$URL);
           $Ret[] = array(
-            'MTime' => $MTime,
+            'Time' => $MTime,
             'URL' => $File
           );
         }
