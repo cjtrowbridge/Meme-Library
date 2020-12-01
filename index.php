@@ -203,9 +203,9 @@ function ago($time){
           <div class="card-body">
             <div class="card-text">
               <?php if(count($Pics)>1){ ?>
-                <a href="<?php echo $Pic['URL']; ?>">
-              <?php }else{ ?>
                 <a href="?h=<?php echo $Pic['Hash']; ?>">
+              <?php }else{ ?>
+                <a href="<?php echo $Pic['URL']; ?>">
               <?php } ?>
                 <img src="<?php echo $Pic['URL']; ?>" title="Saved <?php echo date('r',$Pic['Time']); ?>" width="300">
               </a>
