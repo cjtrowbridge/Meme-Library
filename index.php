@@ -141,7 +141,7 @@ function ago($time){
               <a href="<?php echo $Pic['URL']; ?>">
                 <img src="<?php echo $Pic['URL']; ?>" title="Saved <?php echo date('r',$Pic['Time']); ?>" width="300">
               </a>
-              <small>Saved in <?php echo $Pic['In'].'<br>'.ago($Pic['Time']); ?> ago.</small>
+              <small>Saved in <a href="?f=<?php echo $Pic['In']; ?>"><?php echo $Pic['In'].'</a><br>'.ago($Pic['Time']); ?> ago</small>
             </div><!--End Card-text-->
           </div><!--End Card-body-->
         </div><!--End Card-->
