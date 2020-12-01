@@ -37,7 +37,13 @@ function GetFiles($Path, $URL, $Filter = false){
   $Ret = array();
   if ($Handle = opendir($Path)) {
     while (false !== ($File = readdir($Handle))) {
-      if ($File != "." && $File != "..") {
+      if (
+        $File != "." && 
+        $File != ".." &&
+        $File != ".git" &&
+        $File != ".sync" &&
+        $File != ""
+      ){
         if(is_dir($Path.'/'.$File)){
           $New = GetFiles($Path.'/'.$File, $URL.'/'.$File, $Filter);
           foreach($New as $NewFile){
@@ -57,7 +63,9 @@ function GetFiles($Path, $URL, $Filter = false){
               $In = str_replace($FQDNURL, '', $FQPath);
               $In = str_replace($File, '', $In);
               $In = trim($In, '/');
-              $Tags[$In] = $In;
+              if($In != ""){
+                $Tags[$In] = $In;
+              }
               if(
                 ($Filter == false) ||
                 ($Filter == $In)
