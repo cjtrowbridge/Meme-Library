@@ -7,15 +7,16 @@ usort($Pics, function ($item1, $item2) {
     return $item2['Time'] <=> $item1['Time'];
 });
 
-
 function GetFiles($Path, $URL){
-  
   $Ret = array();
   if ($Handle = opendir($Path)) {
     while (false !== ($File = readdir($Handle))) {
       if ($File != "." && $File != "..") {
         if(is_dir($Path.'/'.$File)){
-          GetFiles($Path.'/'.$URL, $URL, $Limit, $Count);
+          $New = GetFiles($Path.'/'.$URL, $URL, $Limit, $Count);
+          foreach($New as $NewFile){
+            $Ret[]=$NewFile;
+          }
         }else{
           $FQPath = $URL.'/'.$File;
           $Time = filemtime($Path.'/'.$File);
@@ -44,15 +45,12 @@ function GetFiles($Path, $URL){
 
     gtag('config', 'UA-49854332-1');
   </script>
-
   <title>👁👄👁 - CJ Trowbridge</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  
   <link rel="icon" type="image/jpg" href="/cj.jpg">
   <style>
     img{
