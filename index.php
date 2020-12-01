@@ -24,7 +24,8 @@ if(
   (intval($Index) == 0) ||
   (!(isset($Chunks[ $Index ])))
 ){
-  die('Invalid page number: '.$Filter.': '.$Index);
+  
+  die('Invalid page number: '.$Filter.': '.$Index.', Only found '.count($Chunks).' pages.');
 }
 $Index--;
 $Pics = $Chunks[$Index];
