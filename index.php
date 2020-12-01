@@ -15,7 +15,17 @@ if(
   $_GET['f'] = 'All';
 }
 $Tags = array('All');
-$Pics = GetFiles($Path, $FQDNURL, $Filter);
+
+if(isset($_GET['h'])){
+  $Hash = $_GET['h'];
+}else{
+  $Hash = false;
+}
+
+$Pics = GetFiles($Path, $FQDNURL, $Filter, $Hash);
+
+
+  
 usort($Pics, function ($item1, $item2) {
   return $item2['Time'] <=> $item1['Time'];
 });
@@ -37,7 +47,7 @@ if(
 $Index = $_GET['p'];
 $Pics = $Chunks[$Index];
 
-function GetFiles($Path, $URL, $Filter = false){
+function GetFiles($Path, $URL, $Filter = false, $MatchHash = false){
   global $FQDNURL, $Tags;
   $Ret = array();
   if ($Handle = opendir($Path)) {
@@ -50,7 +60,7 @@ function GetFiles($Path, $URL, $Filter = false){
         $File != ""
       ){
         if(is_dir($Path.'/'.$File)){
-          $New = GetFiles($Path.'/'.$File, $URL.'/'.$File, $Filter);
+          $New = GetFiles($Path.'/'.$File, $URL.'/'.$File, $Filter, $MatchHash);
           foreach($New as $NewFile){
             $Ret[]=$NewFile;
           }
@@ -63,11 +73,17 @@ function GetFiles($Path, $URL, $Filter = false){
               $FileExtension == 'png' ||
               $FileExtension == 'bmp'
             ){
+              
               $FQPath = $URL.'/'.$File;
+              
               $Time = filemtime($Path.'/'.$File);
+              
               $In = str_replace($FQDNURL, '', $FQPath);
               $In = str_replace($File, '', $In);
               $In = trim($In, '/');
+              
+              $Hash = md5($File.$Time); //This is just a unique identifier for the file in case it is moved between folders so it will still work.
+                
               if($In != ""){
                 $Tags[$In] = $In;
               }
@@ -75,11 +91,19 @@ function GetFiles($Path, $URL, $Filter = false){
                 ($Filter == false) ||
                 ($Filter == $In)
               ){
-                $Ret[] = array(
+                $New = = array(
                   'Time' => $Time,
                   'URL' => $FQPath,
-                  'In' => $In
+                  'In' => $In,
+                  'Hash' => $Hash
                 );
+                
+                if(
+                  ($MatchHash == false) ||
+                  ($Hash == $MatchHash)
+                ){
+                  $Ret[] =$New;
+                }
               }
             }else{
               $IgnoredExtensions[$FileExtension] = $FileExtension;
@@ -178,7 +202,11 @@ function ago($time){
         <div class="card mb-4">
           <div class="card-body">
             <div class="card-text">
-              <a href="<?php echo $Pic['URL']; ?>">
+              <?php if(count($Pics)>1){ ?>
+                <a href="<?php echo $Pic['URL']; ?>">
+              <?php }else{ ?>
+                <a href="?h=<?php echo $Pic['Hash']; ?>">
+              <?php } ?>
                 <img src="<?php echo $Pic['URL']; ?>" title="Saved <?php echo date('r',$Pic['Time']); ?>" width="300">
               </a>
               <small>Saved in <a href="?f=<?php echo $Pic['In']; ?>"><?php echo $Pic['In'].'</a><br>'.ago($Pic['Time']); ?> ago</small>
