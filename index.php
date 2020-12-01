@@ -157,7 +157,10 @@ function ago($time){
     <div class="col-12">
       
       <h1 class="mt-2"><a href="https://cjtrowbridge.com/%F0%9F%91%81%F0%9F%91%84%F0%9F%91%81/">My Memetic Library</a><?php
-        if(isset($_GET['f'])){
+        if(
+          (isset($_GET['f']))&&
+          ($_GET['f'] != 'All')
+        ){
           echo ': '.$_GET['f'];
         }
       ?></h1>
