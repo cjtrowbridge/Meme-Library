@@ -18,7 +18,7 @@ function GetFiles($Path, $URL){
           GetFiles($Path.'/'.$URL, $URL, $Limit, $Count);
         }else{
           $File = $URL.'/'.$File;
-          $CTime = filetime($Path.'/'.$URL);
+          $CTime = filemtime($Path.'/'.$URL);
           $Ret[] = array(
             'Time' => $MTime,
             'URL' => $File
@@ -82,7 +82,9 @@ function GetFiles($Path, $URL){
         <div class="card mb-4">
           <div class="card-body">
             <div class="card-text">
-              <img src="<?php echo $Pic['URL']; ?>" title="Saved <?php echo date('r',$Pic['mTime']); ?>" width="300">
+              <a href="<?php echo $Pic['URL']; ?>">
+                <img src="<?php echo $Pic['URL']; ?>" title="Saved <?php echo date('r',$Pic['mTime']); ?>" width="300">
+              </a>
             </div><!--End Card-text-->
           </div><!--End Card-body-->
         </div><!--End Card-->
