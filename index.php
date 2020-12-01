@@ -4,7 +4,7 @@ $Path = '../memes';
 global $FQDNURL;
 $FQDNURL = 'https://cjtrowbridge.com/memes';
 $IgnoredExtensions = array();
-$Pics = GetFiles($Path, $FQDNURL);
+$Pics = GetFiles($Path, $FQDNURL, $Filter);
 usort($Pics, function ($item1, $item2) {
     return $item2['Time'] <=> $item1['Time'];
 });
@@ -24,7 +24,7 @@ if(
 $Index--;
 $Pics = $Chunks[$Index];
 
-function GetFiles($Path, $URL){
+function GetFiles($Path, $URL, $Filter = false){
   global $FQDNURL;
   $Ret = array();
   if ($Handle = opendir($Path)) {
@@ -48,12 +48,17 @@ function GetFiles($Path, $URL){
               $Time = filemtime($Path.'/'.$File);
               $In = str_replace($FQDNURL, '', $FQPath);
               $In = str_replace($File, '', $In);
-                $In = trim($In, '/');
-              $Ret[] = array(
-                'Time' => $Time,
-                'URL' => $FQPath,
-                'In' => $In
-              );
+              $In = trim($In, '/');
+              if(
+                ($Filter == false) ||
+                ($Filter == $In)
+              ){
+                $Ret[] = array(
+                  'Time' => $Time,
+                  'URL' => $FQPath,
+                  'In' => $In
+                );
+              }
             }else{
               $IgnoredExtensions[$FileExtension] = $FileExtension;
             }
