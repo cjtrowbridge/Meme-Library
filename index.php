@@ -231,9 +231,9 @@ function ago($time){
           
           $Page = $_GET['p']+1;
           if($i == $Page){
-            echo '<a class="btn btn-small m-1 btn-info" href="?p='.$i.'">'.$i.'</a> ';
+            echo '<a class="btn btn-small m-1 btn-info" href="?f='.$_GET['f'].'&p='.$i.'">'.$i.'</a> ';
           }else{
-            echo '<a class="btn btn-small m-1 btn-outline-info" href="?p='.$i.'">'.$i.'</a> ';
+            echo '<a class="btn btn-small m-1 btn-outline-info" href="?f='.$_GET['f'].'&p='.$i.'">'.$i.'</a> ';
           }
         }
       ?>
